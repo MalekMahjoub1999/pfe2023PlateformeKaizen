@@ -14,7 +14,7 @@ exports.signup = (req, res) => {
   });
 
   user.save((err, user) => {
-    if (err) {
+    if (err) {//erreur dans serveur 500
       res.status(500).send({ message: err });
       return;
     }

@@ -6,9 +6,7 @@ const dbConfig = require("./app/config/db.config");
 
 const app = express();
 
-// var corsOptions = {
-//   origin: "http://localhost:8000"
-// };
+
 var corsOptions = {
   origin: ["http://localhost:8000"],
   credentials: true
@@ -55,6 +53,7 @@ app.get("/", (req, res) => {
 // routes
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
+require("./app/routes/offres.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8000;
