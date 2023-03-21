@@ -3,10 +3,23 @@ module.exports = mongoose => {
     var schema = mongoose.Schema(
       {
         title: String,
-        description: String,
+        description_générale: String,
+       skills: String,
+        date_debut_candidature:String,
+        date_fin_candidature:String,
+        département:String,
+        nom_société:String,
+        salaire:String,
+      experience:String,
+      nbreCandidat:String,
+      typeContrat:String,
+      compétence:String,
+    genre:String,
         published: Boolean
       },
-      { timestamps: true }
+      { timestamps: true },
+ 
+      
     );
   
     schema.method("toJSON", function() {

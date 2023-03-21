@@ -11,9 +11,20 @@ const Offres = db.offres;
         // Create a offres
         const offres = new Offres({
           title: req.body.title,
-          description: req.body.description,
+          description_générale: req.body.description_générale,
+         date_debut_candidature:req.body.date_debut_candidature,
+          date_fin_candidature:req.body.date_fin_candidature,
+           département:req.body.département,
+          nom_société:req.body.nom_société,
+          salaire:req.body.salaire,
+          experience:req.body.experience,
+        nbreCandidat:req.body.nbreCandidat,
+        typeContrat:req.body.typeContrat,
+        compétence:req.body.compétence,
+      genre:req.body.genre,
           published: req.body.published ? req.body.published : false
         });
+     
         // Save offres in the database
         offres
           .save(offres)
