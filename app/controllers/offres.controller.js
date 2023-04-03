@@ -1,3 +1,4 @@
+const { offres } = require("../models");
 const db = require("../models");
 const Offres = db.offres;
 
@@ -11,7 +12,9 @@ const Offres = db.offres;
         // Create a offres
         const offres = new Offres({
           title: req.body.title,
+          // titulaire:req.body.titulaire,
           description_générale: req.body.description_générale,
+          age:req.body.age,
          date_debut_candidature:req.body.date_debut_candidature,
           date_fin_candidature:req.body.date_fin_candidature,
            département:req.body.département,
@@ -73,6 +76,26 @@ exports.findOne = (req, res) => {
           .send({ message: "Error retrieving offres with id=" + id });
       });
 };
+//title
+// offres.find({ sort: { title: 1 }, typeContrat: { _CDD }});
+
+
+// exports.findOffresByTitle = (req, res) => {
+
+// const title = req.params.title;
+// Offres.findOffresByTitle(title)
+//   .then(data => {
+//     if (!data)
+//       res.status(404).send({ message: "Not found offres with title " + title });
+//     else res.send(data);
+//   })
+//   .catch(err => {
+//     res
+//       .status(500)
+//       .send({ message: "Error retrieving offres with title " + title  });
+//   });
+// };
+
 
 // Update a Offres by the id in the request
 exports.update = (req, res) => {

@@ -3,8 +3,8 @@ module.exports = mongoose => {
     var schema = mongoose.Schema(
       {
         title: String,
+        // titulaire:Object,
         description_générale: String,
-       skills: String,
         date_debut_candidature:String,
         date_fin_candidature:String,
         département:String,

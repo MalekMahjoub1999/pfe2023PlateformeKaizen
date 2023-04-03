@@ -13,5 +13,8 @@ db.ROLES = ["user", "admin", "moderator"];
 db.url = dbConfig.url;
 db.offres = require("./offres.model.js")(mongoose);
 db.profiles = require("./profile.model.js")(mongoose);
+db.poste = require("./post.model.js")(mongoose);
 
+//hot 
+// db.books=require("./bookModel.js")(mongoose);
 module.exports = db;

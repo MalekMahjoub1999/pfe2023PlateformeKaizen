@@ -14,7 +14,8 @@ module.exports = app => {
   
     // Retrieve a single offres with id
     router.get("/:id", offres.findOne);
-  
+    // router.get("/:title", offres.findOffresByTitle);
+
     // Update a offres with id
     router.put("/:id", offres.update);
   

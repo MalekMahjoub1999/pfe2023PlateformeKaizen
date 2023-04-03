@@ -1,17 +1,26 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-
+// import { baseUrl } from './config';
 const dbConfig = require("./app/config/db.config");
 
-const app = express();
+const app = express();//we gona save express instance dans varaible app
+global.__basedir = __dirname;
 
-
+// const fs = require('fs')
+// const path = require('path')
+// const dotenv = require('dotenv')
+// dotenv.config()
 var corsOptions = {
   origin: ["http://localhost:8000"],
   credentials: true
 }
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://localhost:8000");
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -55,6 +64,9 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/offres.routes")(app);
 require("./app/routes/profile.routes")(app);
+// require("./app/routes/post.routes")(app);
+require("./app/routes/index.routes")(app);
+
 
 
 // set port, listen for requests
