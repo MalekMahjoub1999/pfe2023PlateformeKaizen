@@ -1,12 +1,13 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-// import { baseUrl } from './config';
+const expressValidator = require('express-validator');
 const dbConfig = require("./app/config/db.config");
+// const passwordReset = require("./app/routes/passwordReset");//resetpsw import
 
 const app = express();//we gona save express instance dans varaible app
 global.__basedir = __dirname;
-
+app.use(expressValidator());
 // const fs = require('fs')
 // const path = require('path')
 // const dotenv = require('dotenv')
@@ -25,7 +26,7 @@ app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
-
+////tamel table okhra tsemeha usergoogle///// 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,6 +39,7 @@ app.use(
 );
 
 const db1 = require("./app/models");
+const offresModel = require("./app/models/offres.model");
 const Role = db1.role;
 
 db1.mongoose
@@ -64,8 +66,13 @@ require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
 require("./app/routes/offres.routes")(app);
 require("./app/routes/profile.routes")(app);
-// require("./app/routes/post.routes")(app);
+require("./app/routes/post.routes")(app);
 require("./app/routes/index.routes")(app);
+// require("./app/routes/passwordReset");//resetpsw
+// require("./app/routes/passwordReset")(app);
+// app.use("/api/users", users);
+// app.use("/api/password-reset", passwordReset);//apiresertpsw
+
 
 
 
@@ -75,6 +82,11 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
+
+// app.get("/search/:key",async(req,res)=>{
+// let data= await Offres.find()
+//   res.send("data ")//trajaek data fil postman en frme json
+// })
 function initial() {
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {

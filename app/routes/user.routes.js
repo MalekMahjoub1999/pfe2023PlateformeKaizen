@@ -1,6 +1,12 @@
 const { authJwt } = require("../middlewares");
 const controller = require("../controllers/user.controller");
+// const UserController = require('../controllers/user.controller');
+const express = require('express');
+//  const { User, validate } = require("../models/user.model");
 
+// const mongoose = require('mongoose');
+const router = express.Router();//teb3in edit user eleate w update 
+// const {check, validationResult} = require('express-validator/check');
 module.exports = function(app) {
   app.use(function(req, res, next) {
     res.header(
@@ -25,4 +31,23 @@ module.exports = function(app) {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );
-};
+  // router.post("/", async (req, res) => {
+  //     try {
+  //         const { error } = validate(req.body);
+  //         if (error) return res.status(400).send(error.details[0].message);
+  
+  //         const user = await new User(req.body).save();
+  
+  //         res.send(user);
+  //     } catch (error) {
+  //         res.send("An error occured");
+  //         console.log(error);
+  //     }
+  // });//resetpsw why resetpsw w inscri dnt work toogether ?
+
+  }
+  
+  
+  
+  
+  // module.exports = router;

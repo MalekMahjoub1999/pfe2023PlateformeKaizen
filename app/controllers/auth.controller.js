@@ -1,10 +1,13 @@
+
+// les contrôleurs sont principalement responsables de la gestion des requêtes HTTP 
+// et de l'interaction avec les clients
 const config = require("../config/auth.config");
 const db = require("../models");
 const User = db.user;
 const Role = db.role;
-
+const { check, validationResult } = require('express-validator/check');
 var jwt = require("jsonwebtoken");
-var bcrypt = require("bcryptjs");
+var bcrypt = require("bcryptjs");//khedmet el user edit
 
 exports.signup = (req, res) => {
   const user = new User({
@@ -115,3 +118,78 @@ exports.signout = async (req, res) => {
     this.next(err);
   }
 };
+exports.deleteAll = (req, res) => {
+  User.deleteMany({})
+  .then(data => {
+    res.send({
+      message: `${data.deletedCount} users were deleted successfully!`
+    });
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while removing all users."
+    });
+  });
+};
+exports.all_users = (req, res, next) => {//work
+  User.find({}).exec().then(result => {
+    res.status(200).json({result});
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({error: err});
+  });
+};
+exports.deleteUser = (req, res) => {//work
+  const id = req.params.id;
+
+User.findByIdAndRemove(id)
+  .then(data => {
+    if (!data) {
+      res.status(404).send({
+        message: `Cannot delete user with id=${id}. Maybe user  was not found!`
+      });
+    } else {
+      res.send({
+        message: "user was deleted successfully!"
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Could not delete user with id=" + id
+    });
+  });
+ };
+ 
+//github...
+// exports.update = (req, res, next) => {
+//   User.findByIdAndUpdate({username: req.body.username, email: req.body.email}).exec().then(result => {
+//     res.status(200).json({message: 'User updated'});
+//   }).catch(err => {
+//     console.log(err);
+//     res.status(500).json({error: err});
+//   });
+// };///all update does not work ??voir ulterieurement 
+//////do //////////it//////////////know//////////////
+// exports.update = (req, res) => {
+//   if (!req.body) {
+//       return res.status(400).send({
+//         message: "Data to update can not be empty!"
+//       });
+//     }
+//     const id = req.params.id;
+//     User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+//       .then(data => {
+//         if (!data) {
+//           res.status(404).send({
+//             message: `Cannot update Users with id=${id}. Maybe user was not found!`
+//           });
+//         } else res.send({ message: "user was updated successfully." });
+//       })
+//       .catch(err => {
+//         res.status(500).send({
+//           message: "Error updating user with id=" + id
+//         });
+//       });
+// };

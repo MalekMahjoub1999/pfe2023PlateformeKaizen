@@ -1,6 +1,6 @@
 module.exports = app => {
     const profiles = require("../controllers/profile.controller.js");
-  
+    
     var router = require("express").Router();
   
     // Create a new Profiles
@@ -14,7 +14,7 @@ module.exports = app => {
   
     // Retrieve a single Profile with id
     router.get("/:id", profiles.findOne);
-  
+
     // Update a Profile with id
     router.put("/:id", profiles.update);
   

@@ -1,3 +1,6 @@
+
+
+
 exports.allAccess = (req, res) => {
     res.status(200).send("Public Content.");
   };
@@ -13,3 +16,4 @@ exports.allAccess = (req, res) => {
   exports.moderatorBoard = (req, res) => {
     res.status(200).send("Moderator Content.");
   };
+

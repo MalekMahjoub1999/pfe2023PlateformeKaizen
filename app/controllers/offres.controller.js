@@ -13,9 +13,9 @@ const Offres = db.offres;
         const offres = new Offres({
           title: req.body.title,
           // titulaire:req.body.titulaire,
-          description_générale: req.body.description_générale,
-          age:req.body.age,
-         date_debut_candidature:req.body.date_debut_candidature,
+        description_générale: req.body.description_générale,
+        age:req.body.age,
+        date_debut_candidature:req.body.date_debut_candidature,
           date_fin_candidature:req.body.date_fin_candidature,
            département:req.body.département,
           nom_société:req.body.nom_société,
@@ -24,7 +24,7 @@ const Offres = db.offres;
         nbreCandidat:req.body.nbreCandidat,
         typeContrat:req.body.typeContrat,
         compétence:req.body.compétence,
-      genre:req.body.genre,
+       genre:req.body.genre,
           published: req.body.published ? req.body.published : false
         });
      
@@ -41,7 +41,6 @@ const Offres = db.offres;
             });
           });
       };
-
 
 // Retrieve all Offres from the database.
 exports.findAll = (req, res) => {
@@ -76,14 +75,15 @@ exports.findOne = (req, res) => {
           .send({ message: "Error retrieving offres with id=" + id });
       });
 };
-//title
-// offres.find({ sort: { title: 1 }, typeContrat: { _CDD }});
 
+//liste offre sab aleehom get.nom//ttkhdem
+  
+// //// Find a single Offres with an title
 
-// exports.findOffresByTitle = (req, res) => {
+// exports.findOne = (req, res) => {
 
 // const title = req.params.title;
-// Offres.findOffresByTitle(title)
+// Offres.findByTitle(title)
 //   .then(data => {
 //     if (!data)
 //       res.status(404).send({ message: "Not found offres with title " + title });

@@ -1,6 +1,6 @@
 const uploadFile = require("../middlewares/upload");
 const fs=require("fs")
-baseUrl: 'https://localhost:8000/files'
+baseUrl: 'https://localhost:8000/files'//localhost te3 mngodb bech ywali stock fil bd( table okhra files par exple )
 
 //exports Rest APIs post et get files
 const upload = async (req, res) => {
